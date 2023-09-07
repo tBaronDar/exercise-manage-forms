@@ -43,13 +43,25 @@ const BasicForm = (props) => {
     resetEmail();
   };
 
-  const formIsValid = firstNameIsValid && lastNameIsValid && emailIsValid;
+  let formIsValid = false;
+  if (firstNameIsValid && lastNameIsValid && emailIsValid) {
+    formIsValid = true;
+  }
+
+  const firstNameStyles = firstNameHasError
+    ? "form-control invalid"
+    : "form-control";
+  const lastNameStyles = lastNameHasError
+    ? "form-control invalid"
+    : "form-control";
+  const emailStyles = emailHasError ? "form-control invalid" : "form-control";
+
   const buttonStyles = formIsValid ? "form-actions" : "form-disabled";
 
   return (
     <form onSubmit={basicFormSubmitHandler}>
       <div className="control-group">
-        <div className="form-control">
+        <div className={firstNameStyles}>
           <label htmlFor="name">First Name</label>
           <input
             onChange={firstNameChangeHandler}
@@ -63,7 +75,7 @@ const BasicForm = (props) => {
           )}
         </div>
 
-        <div className="form-control">
+        <div className={lastNameStyles}>
           <label htmlFor="name">Last Name</label>
           <input
             type="text"
@@ -72,13 +84,13 @@ const BasicForm = (props) => {
             onBlur={lastNameBlurHandler}
             value={enteredLastName}
           />
+          {lastNameHasError && (
+            <p className="error-text">Last name must not be empty.</p>
+          )}
         </div>
-        {lastNameHasError && (
-          <p className="error-text-right">Last name must not be empty.</p>
-        )}
       </div>
 
-      <div className="form-control">
+      <div className={emailStyles}>
         <label htmlFor="name">E-Mail Address</label>
         <input
           type="email"
