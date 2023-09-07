@@ -101,13 +101,18 @@ button:active {
   color: #b40e0e;
 }
 
-.form-disabled {
+.error-text-right {
+  color: #b40e0e;
   text-align: right;
 }
 
-.form-disabled button:hover {
-  background-color: #fb0000;
-  border: 1px solid #000000;
-  color: rgb(0, 0, 0);
+.form-disabled {
+  text-align: right;
+  background-color: #9b9a9a;
   cursor: not-allowed;
+}
+
+.form-disabled button:hover {
+  cursor: not-allowed;
+  background-color: #9b9a9a;
 }
